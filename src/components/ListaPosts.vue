@@ -13,7 +13,7 @@
 
 <script>
 
-import Post from './Post';
+import Post from '@/components/Post';
 
 export default {
     name:'ListaPosts',
@@ -32,10 +32,11 @@ export default {
 
         .catch(error => console.log(error));
     },
-    data (){
-        return{
-            posts:[],
+    data() {
+        return {
+            posts: [],
         }
-    }
+    },
+
 }
 </script>

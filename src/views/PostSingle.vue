@@ -4,6 +4,6 @@
 
 <script>
 export default {
-    name:'Perfil',
+    name: 'PostSingle',
 }
 </script>

@@ -3,6 +3,7 @@ import Router from 'vue-router';
 
 import Home from './views/Home';
 import Feed from './views/Feed';
+import PostSingle from './views/PostSingle';
 import Login from './views/Login';
 import Perfil from './views/Perfil';
 import Registro from './views/Registro'
@@ -15,28 +16,39 @@ export default new Router({
         {
             path:'/',
             name: 'home',
-            component: Home
+            component: Home,
+            meta:{logueado:true},
         },
         {
-            path:'/feed',
+            path:'/feed/:username',
             name:'feed',
-            component: Feed
+            component: Feed,
+            meta:{logueado:true},
 
+        },
+        {
+            path:'/post/:postID',
+            name:'post',
+            component: PostSingle,
+            meta:{logueado:true},
         },
         {
             path:'/login',
             name:'login',
-            component: Login
+            component: Login,
+            meta:{ logueado: false},
         },
         {
             path:'/perfil',
             name:'perfil',
-            component: Perfil
+            component: Perfil,
+            meta:{logueado:true},
         },
         {
             path:'/registro',
             name:'registro',
-            component: Registro
+            component: Registro,
+            meta:{logueado: false},
         }
     ]
 })

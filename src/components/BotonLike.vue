@@ -15,3 +15,13 @@ export default {
     },
 }
 </script>
+<style>
+    button{
+        font-size: 15px;
+        background-color: #e4ca75;
+        border: none;
+        border-radius: 5px;
+        margin: 5px 3px 5px;
+        cursor: pointer;
+    }
+</style>
