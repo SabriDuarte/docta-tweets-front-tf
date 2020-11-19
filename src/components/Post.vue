@@ -120,6 +120,7 @@ export default {
         display: flex;
         flex-basis: 100%;
         margin: 0px 30px;
+        color: white;
     }
     .botones{
         display: flex;

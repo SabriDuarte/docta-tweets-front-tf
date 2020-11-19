@@ -14,3 +14,11 @@ export default {
     },
 }
 </script>
+<style scoped>
+    button{
+        background-color:#e4ca75;
+        border:none;
+        font-size: 1rem;
+        border-radius: 10px;
+    }
+</style>

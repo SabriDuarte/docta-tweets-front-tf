@@ -1,7 +1,7 @@
 <template>
-    <div class='feed'>
+    <div>
         <formulario-publicacion></formulario-publicacion>
-        <lista-posts class='posteos' :URL='URL'></lista-posts>
+        <lista-posts :URL='URL'></lista-posts>
     </div>
 </template>
 
@@ -24,25 +24,3 @@ export default {
 
 
 </script>
-<style scoped>
-    .feed{
-        width: 1120px;
-        height: auto;
-        display: flex;
-        flex-flow: row wrap;
-        margin: 0 auto;
-        border: none;
-    }
-    .posteos{
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-        align-items: center;
-        width:600px;
-        margin: 15px auto;
-        min-height: 10vh;
-        border: 1px solid #6d6c6c;
-        border-radius: 15px;
-        background-color: rgb(42, 59, 75) ;
-    }
-</style>

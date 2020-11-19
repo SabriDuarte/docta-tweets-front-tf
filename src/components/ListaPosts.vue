@@ -3,7 +3,7 @@
         <post v-for="(post,idx) in posts" :key="idx"
         :autor="post.autor.username" :fecha="post.fecha"
         :mensaje="post.mensaje" :likes="post.likes.length"
-        :idPost="post._id" :postURL="postURL"
+        :idPost="post._id"
         @eventLike='eventPosts' @eventDelete='eventPosts'>
 
         </post>
@@ -17,16 +17,16 @@ import Post from '@/components/Post';
 
 export default {
     name:'ListaPosts',
-    props:{
-        URL: String
-    },
     components:{
         Post
+    },
+    props:{
+        URL: String
     },
 
     methods:{
         eventPosts(){
-            fetch(this.postURL)
+            fetch(this.URL)
             .then(res => res.json())
             .then(data => {
                 this.posts = data.body;
@@ -40,7 +40,6 @@ export default {
     data() {
         return {
             posts: [],
-            postURL: "https://node-api-doctadevs.vercel.app/posts"
         }
     }
 

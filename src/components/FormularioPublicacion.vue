@@ -43,7 +43,7 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
     h3{
         text-align: center;
         font-size: 1.5rem;
@@ -67,8 +67,16 @@ export default {
         background-color: rgb(21, 32, 43);
         border: 1px solid #6d6c6c;
         border-radius: 5px;
+        color: white;
 
         font-size: 1.2rem;
+    }
+    button{
+        background-color:#e4ca75;
+        border:none;
+        width: 20%;
+        font-size: 1rem;
+        border-radius: 10px;
     }
 
 </style>

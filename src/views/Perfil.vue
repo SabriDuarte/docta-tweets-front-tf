@@ -1,8 +1,8 @@
 <template>
-    <div>
-        <h2>Perfil</h2>
+    <div class="perTitulo">
+        <h1>Perfil <i class="fas fa-user-circle"></i></h1>
         <div>
-            <h4>{{`Nombre: ${nombre}`}}</h4>
+            <p>{{`Nombre: ${nombre}`}}</p>
             <p>{{`Usuario: ${usuario}`}}</p>
             <p>{{`Rol: ${rol}`}}</p>
         </div>
@@ -68,3 +68,25 @@ export default {
     },
 }
 </script>
+<style scoped>
+    h1{
+        font-size: 3rem;
+        color:#e4ca75;
+    }
+    i {
+        font-size: 3rem;
+        color:#e4ca75;
+    }
+    .perTitulo{
+        display: flex;
+        justify-content: center;
+        flex-direction: column ;
+        align-items: center;
+    }
+    p{
+        font-size: 1.5rem ;
+        color: white;
+    }
+
+
+</style>
