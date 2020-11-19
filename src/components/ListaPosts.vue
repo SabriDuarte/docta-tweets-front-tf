@@ -1,10 +1,10 @@
 <template>
-    <div>
+    <div >
         <post v-for="(post,idx) in posts" :key="idx"
-        :autor='post.autor.username'
-        :fecha='post.fecha'
-        :mensaje='post.mensaje'
-        :likes='post.likes.length'>
+        :autor="post.autor.username" :fecha="post.fecha"
+        :mensaje="post.mensaje" :likes="post.likes.length"
+        :idPost="post._id" :postURL="postURL"
+        @eventLike='eventPosts' @eventDelete='eventPosts'>
 
         </post>
 
@@ -17,26 +17,33 @@ import Post from '@/components/Post';
 
 export default {
     name:'ListaPosts',
+    props:{
+        URL: String
+    },
     components:{
-        Post,
+        Post
+    },
+
+    methods:{
+        eventPosts(){
+            fetch(this.postURL)
+            .then(res => res.json())
+            .then(data => {
+                this.posts = data.body;
+            })
+            .catch(error => console.log('error', error));
+        }
     },
     created(){
-        fetch("https://node-api-doctadevs.vercel.app/posts")
-        .then(response => response.json())
-
-        .then(result => {
-            if(result.error) return console.log(result);
-            this.posts = result.body;
-            return true;
-        })
-
-        .catch(error => console.log(error));
+        this.eventPosts()
     },
     data() {
         return {
             posts: [],
+            postURL: "https://node-api-doctadevs.vercel.app/posts"
         }
-    },
+    }
+
 
 }
 </script>

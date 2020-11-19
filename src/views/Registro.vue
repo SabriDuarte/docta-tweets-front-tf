@@ -1,6 +1,6 @@
 <template>
     <div>
-        <formulario-usuario></formulario-usuario>
+        <formulario-usuario :usuarioURL='usuarioURL'></formulario-usuario>
     </div>
 </template>
 
@@ -12,6 +12,11 @@ export default {
     name:'Registro',
     components:{
         FormularioUsuario
+    },
+    data(){
+        return{
+            usuarioURL:'https://node-api-doctadevs.vercel.app/users'
+        }
     }
 }
 </script>

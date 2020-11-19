@@ -1,6 +1,6 @@
 <template>
     <div>
-        <formulario-login></formulario-login>
+        <formulario-login :loginURL='loginURL'></formulario-login>
     </div>
 </template>
 
@@ -12,6 +12,11 @@ export default {
     name:'Login',
     components:{
         FormularioLogin
+    },
+    data(){
+        return{
+            loginURL:'https://node-api-doctadevs.vercel.app/login'
+        }
     }
 }
 </script>

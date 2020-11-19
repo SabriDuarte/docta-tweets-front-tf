@@ -1,23 +1,25 @@
 <template>
     <div class="posts">
+        <router-link :to="{name: 'post', params: {postID: idPost}}"></router-link>
         <div class="titulo">
-            <h3>{{autor}}</h3>
-            <p>{{fecha}}</p>
+            <h3>{{this.autor}}</h3>
+            <p>{{this.fecha}}</p>
         </div>
         <div class="posteo">
-            <p>{{mensaje}}</p>
+            <p>{{this.mensaje}}</p>
         </div>
         <div class="botones">
-            <boton-like @evento-like="like">{{likes}}</boton-like>
-            <boton-eliminar-post @evento-eliminar-post="eliminarPost"></boton-eliminar-post>
+            <boton-like @evento-like="like" :idPostUsuario="idPost" @click="like"><span> {{ `${likes} likes`}}</span></boton-like>
+            <boton-eliminar-post @evento-eliminar='eliminarPost' :idPostUsuario="idPost" v-if="username == autor" />
         </div>
     </div>
 </template>
 
 <script>
 
-import BotonLike from './BotonLike';
-import BotonEliminarPost from './BotonEliminarPost'
+import BotonLike from '@/components/BotonLike';
+import BotonEliminarPost from '@/components/BotonEliminarPost'
+
 
 export default {
     name:'Post',
@@ -25,21 +27,27 @@ export default {
         BotonLike,
         BotonEliminarPost
     },
-    data(){
-        return{
-            post:[],
-        }
-    },
     props:{
         autor: String,
         fecha: String,
         mensaje: String,
-        likes: Number
+        likes: Number,
+        idPost: String,
+    },
+    data(){
+        return{
+            post:{},
+            username: sessionStorage.getItem('username'),
+        }
     },
     methods: {
         like(){
-            fetch(`https://node-api-doctadevs.vercel.app/posts/{{POST_ID}}/like`,
+            fetch(`https://node-api-doctadevs.vercel.app/posts/${this.idPost}/like`,
             {
+                headers: {
+                    'Content-Type':'application/json',
+                    'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
+                },
                 method: 'POST'
             })
             .then(res => {
@@ -47,32 +55,37 @@ export default {
             })
             .then(data => {
                 console.log(data)
+                this.$emit('eventLike')
             })
             .catch(err => {
                 console.log(err)
             })
-        }
+        },
+
+        eliminarPost(){
+            fetch(`https://node-api-doctadevs.vercel.app/posts/${this.idPost}`,
+                {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type':'application/json',
+                        'Authorization' : `Bearer ${sessionStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify({
+                        autor: sessionStorage.getItem('username')
+                    })
+                })
+                .then(res => {
+                    return res.json()
+                    })
+                .then(data => {
+                    console.log(data)
+                    this.$emit('eventDelete')
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+            }
     },
-    eliminarPost(){
-        fetch(`https://node-api-doctadevs.vercel.app/posts/{{POST_ID}}`,
-        {
-            method: 'DELETE',
-            body: {
-                "autor": "USERNAME"
-        }
-        })
-        .then(res => {
-            return res.json()
-            })
-        .then(data => {
-            console.log(data)
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }
-
-
 }
 </script>
 

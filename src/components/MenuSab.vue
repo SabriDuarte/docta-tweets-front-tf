@@ -1,10 +1,10 @@
 <template>
     <div class="menuSab">
-        <router-link class="link" to="/">Home</router-link>
-        <router-link class="link" to="/feed">Feed</router-link>
-        <router-link class="link" to="/login">Login</router-link>
-        <router-link class="link" to="/perfil">Perfil</router-link>
-        <router-link class="link" to="/registro">Registro</router-link>
+        <router-link class="link" :to="{path:'/'}">Home</router-link>
+        <router-link class="link" :to="{path: '/feed' , name: 'feed', params: {username: usuarioLog}}">Feed</router-link>
+        <router-link class="link" :to="{path:'/login'}">Login</router-link>
+        <router-link class="link" :to="{path:'/perfil'}">Perfil</router-link>
+        <router-link class="link" :to="{path:'/registro'}">Registro</router-link>
     </div>
 
 </template>
@@ -12,6 +12,14 @@
 <script>
 export default {
     name:'MenuSab',
+    data(){
+        return{
+
+            usuarioLog: window.sessionStorage.getItem('username')
+        }
+    },
+
+
 }
 </script>
 

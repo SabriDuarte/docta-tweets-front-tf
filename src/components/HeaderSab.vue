@@ -1,12 +1,24 @@
 <template>
     <div class="headerSab">
         <h1>Docta Tweets</h1>
+        <menu-sab/>
+        <div class="cerrarS">
+            <boton-cerrar-sesion></boton-cerrar-sesion>
+        </div>
     </div>
 </template>
 
 <script>
+
+import MenuSab from './MenuSab';
+import BotonCerrarSesion from './BotonCerrarSesion'
+
 export default {
-    name: 'HeaderSab'
+    name: 'HeaderSab',
+    components: {
+        MenuSab,
+        BotonCerrarSesion
+    },
 }
 </script>
 

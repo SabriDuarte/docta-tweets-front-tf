@@ -5,7 +5,7 @@
             <input type="text" placeholder="Nombre Completo" v-model="nombre">
             <input type="text" placeholder="Usuario" v-model="username">
             <input type="password" placeholder="Contraseña" v-model="password">
-            <input class="boton" type="submit" value="Registrarse">
+            <button>Regístrate</button>
         </form>
     </div>
 </template>
@@ -13,9 +13,11 @@
 <script>
 export default {
     name:'FormularioUsuario',
+    props:{
+        userURL: String
+    },
     data(){
         return{
-            registrarURL:'https://node-api-doctadevs.vercel.app/users',
             nombre:'',
             username:'',
             password:''
@@ -23,7 +25,7 @@ export default {
     },
     methods:{
         formRegistrar(){
-            fetch(this.registrarURL,{
+            fetch(this.userURL,{
                 method:'POST',
                 headers:{'Content-Type':'application/json'},
                 body:JSON.stringify({
@@ -37,13 +39,13 @@ export default {
             })
             .then(data =>{
                 console.log(data)
+                this.nombre='';
+                this.username='';
+                this.password = '';
             })
             .catch(err =>{
                 console.log(err)
             })
-            this.nombre='';
-            this.username='';
-            this.password = '';
         }
     }
 

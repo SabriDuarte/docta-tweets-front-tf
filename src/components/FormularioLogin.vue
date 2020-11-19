@@ -13,9 +13,11 @@
 <script>
 export default {
     name:'FormularioLogin',
+    props:{
+        loginURL: String
+    },
     data() {
         return {
-            loginURL:'https://node-api-doctadevs.vercel.app/login',
             username: '',
             password: ''
         }
@@ -26,19 +28,22 @@ export default {
                 method:'POST',
                 headers:{'Content-type': "application/json"},
                 body:JSON.stringify({
-                    "username":this.username,
-                    "password":this.password,
-                })
+                    username :this.username,
+                    password :this.password,
+                }),
             })
-            .then(response =>response.json())
-            .then(result=>{
-                if(result.error) return console.log(result);
-
-                sessionStorage.setItem("token",result.body.token);
+            .then(res => {
+                return res.json()
+                })
+            .then(data=>{
+                if(data.error) return console.log(data);
+                let token = data.body.token;
+                sessionStorage.setItem('token',token);
+                sessionStorage.setItem('username',this.username)
                 this.username='';
                 this.password='';
 
-                this.$roter.push({name:"home"});
+                this.$router.push({name:"home"});
 
             })
             .catch(err => {

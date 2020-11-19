@@ -9,8 +9,8 @@ export default {
     name:'BotonEliminarPost',
     methods:{
         eliminarPost(){
-            this.$emit('evento-eliminar-post')
+            this.$emit('evento-eliminar')
         }
     },
 }
-</script> 
+</script>
