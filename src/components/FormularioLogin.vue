@@ -94,5 +94,6 @@ export default {
         font-size: 1.2rem;
         font-weight: 500;
         background-color:#e4ca75;
+        height: 35px;
     }
 </style>

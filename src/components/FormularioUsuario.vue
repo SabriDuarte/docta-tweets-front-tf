@@ -1,5 +1,5 @@
 <template>
-    <div class="formulario">
+    <div class="form-usuario">
         <h2>Registrate</h2>
         <form @submit.prevent="formRegistrar" class="form">
             <input type="text" placeholder="Nombre Completo" v-model="nombre">
@@ -51,3 +51,40 @@ export default {
 
 }
 </script>
+<style scoped>
+    .form-usuario{
+        width: 500px;
+        margin: 0 auto;
+        display: flex;
+        flex-flow:row wrap;
+        justify-content: center;
+        align-items: center;
+        min-height: 60vh;
+        min-width: 70vh;
+        border: 1px solid #6d6c6c;
+        border-radius: 15px;
+        background-color: rgb(42, 59, 75) ;
+    }
+    .form input{
+        width: 80%;
+        height: 35px;
+        margin: 8px 0;
+        border-radius: 10px;
+        border: 1px solid #6d6c6c;
+        text-align: center;
+
+    }
+    button{
+        width: 81%;
+        font-size: 1.2rem;
+        font-weight: 500;
+        background-color:#e4ca75;
+        border: none;
+        border-radius: 10px;
+        margin: 8px 0;
+        padding: 1px 6px;
+        height: 35px;
+    }
+
+
+</style>
